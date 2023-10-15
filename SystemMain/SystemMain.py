@@ -2,15 +2,21 @@ import tkinter
 
 class SystemMain:
 
-    def __init__(self):
-        frm = tkinter.Tk()
-        frm.geometry('1280x720')
-        frm.title('ぼくらの時間')
+    ScreenSize = None
+    TitleName = None
+    def __init__(self, screensize,titlename):
+        self.frm = tkinter.Tk()
+        self.ScreenSize = screensize
+        self.TitlName = titlename
+        return
     
     def __del__(self):
         return 
 
-    def initialize():
+    def initialize(self):
+        frm = tkinter.Tk()
+        frm.geometry(self.ScreenSize)
+        frm.title(self.TitleName)
         return True
 
     def systemMain():
