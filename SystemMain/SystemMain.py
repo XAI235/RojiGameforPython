@@ -6,7 +6,8 @@ class SystemMain:
 
     frm = None
     def __init__(self):
-        self.pygame.init()
+        self.frm = tkinter.Tk()
+        pygame.init()
     def __del__(self):
         return 
 
