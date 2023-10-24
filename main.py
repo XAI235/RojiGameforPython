@@ -1,12 +1,12 @@
 from SystemMain import SystemMain
 
 def main():
-        systemM = SystemMain('1280x720','ぼくらの時間')
+        SysM = SystemMain.SystemMain()
 
-        if(systemM.initialize()) :
-                systemM.systemMain()
+        if(SysM.initialize('1280x720','ぼくらの時間')) :
+                SysM.systemmain()
 
-        systemM.finalize()
+        SysM.finalize()
         return 0
 
 

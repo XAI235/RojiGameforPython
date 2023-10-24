@@ -1,26 +1,23 @@
+import sys, random
+import pygame
 import tkinter
 
 class SystemMain:
 
-    ScreenSize = None
-    TitleName = None
-    def __init__(self, screensize,titlename):
-        self.frm = tkinter.Tk()
-        self.ScreenSize = screensize
-        self.TitlName = titlename
-        return
-    
+    frm = None
+    def __init__(self):
+        self.pygame.init()
     def __del__(self):
         return 
 
-    def initialize(self):
-        frm = tkinter.Tk()
-        frm.geometry(self.ScreenSize)
-        frm.title(self.TitleName)
+    def initialize(self, screensize,titlename):
+        self.frm.geometry(screensize)
+        self.frm.title(titlename)
         return True
 
-    def systemMain():
-        2+1
+    def systemmain(self):
+        self.frm.mainloop()
+        return
 
-    def finalize():
-        3+1
+    def finalize(self):
+        print(3+1)
