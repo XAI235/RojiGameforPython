@@ -1,7 +1,6 @@
 import os,sys, random
 import pygame
 from pygame.locals import *
-import tkinter
 
 #os.path.abspath(__file__) : pythonファイルが存在する絶対パスを取得
 #os.path.dirname(): 入力したパスの一つ上の階層のパスを取得
@@ -14,9 +13,7 @@ CFGPATH = os.path.dirname(ROOTPATH)
 #sys.path.append(CFGPATH)
 
 class SystemMain:
-    frm = None
     def __init__(self):
-        #self.frm = tkinter.Tk()
         pygame.init()
     def __del__(self):
         return 
@@ -25,8 +22,6 @@ class SystemMain:
         self.screen = pygame.display.set_mode((width, height))  # 画面サイズ設定
         pygame.display.set_caption(titlename)                   # ウィンドウタイトル設定
         self.background = pygame.image.load(os.path.normpath(os.path.join(CFGPATH,'Data','image','menu.png'))) # とりあえずここ、画像クラスを作った方がよいのかもしれない?
-        #self.frm.geometry(screensize)
-        #self.frm.title(titlename)
         return True
 
     def systemmain(self):
@@ -37,13 +32,16 @@ class SystemMain:
         while(True):
             if(not pygame.mixer.music.get_busy()) :             #これでBGMがなっているかの判定
                 pygame.mixer.music.play(-1)
+            
             self.screen.fill((0,0,0,))                          # 背景色(ここをうまくやればフェードイン、フェードアウト作れる?)
             self.screen.blit(self.background,(0,0))
-            pygame.display.update()                             # 画面更新 必ず必要
+            
             for event in pygame.event.get():
+                
                 if event.type == QUIT:                          # 終了ボタンを押した場合終了 セーブ警告とかなし
                     pygame.quit()
-        #self.frm.mainloop()
-
+            
+            pygame.display.update()                             # 画面更新 必ず必要
+                    
     def finalize(self):
         sys.exit
