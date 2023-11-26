@@ -3,7 +3,7 @@ from SystemMain import SystemMain
 def main():
         SysM = SystemMain.SystemMain()
 
-        if(SysM.initialize(1280, 720,'ぼくらの時間')) :
+        if(SysM.initialize()) :
                 SysM.systemmain()
 
         SysM.finalize()

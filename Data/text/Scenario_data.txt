@@ -1,0 +1,31 @@
+	@@drawgraph 0 0 1280 720 rouka
+	@@transition 1000
+
+@@label	Scene1
+	@@SceneTitle コンサートに向けて
+
+	@@MessageWindow 1 textwindow
+
+	@@Message 『卒業式コンサート』
+
+	@@Message　紅葉広がる十月。
+
+	@@Message　校内の掲示板に張り出されたポスターを眺め、僕はため息を吐いた。
+
+	@@Message　ポスターの中には、『演奏・雨月詩音』と僕の名前が書かれている。
+
+	@@Message　その隣には――
+
+	@@NamePlate namewindow_kanade 1 LEFT
+	@@BGMPlay miyuki 1
+	@@VoicePlay miyuki 1
+
+	@@Message 「詩音くん、いつもポスターの前でため息吐いてるね」
+	
+	@@NamePlate namewindow_kanade 0
+
+	@@Message　栗色の長い髪の毛を揺らし、彼女が僕の顔を覗き込んだ。
+
+
+	@@IllustBg 0 0 1280 720 cg 1
+

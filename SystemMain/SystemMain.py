@@ -3,6 +3,8 @@ import json
 import pygame
 from pygame.locals import *
 from .MouseClass import MouseClass
+from .TitleScene import TitleScene
+from .GameScene import GameScene
 import cv2
 
 #os.path.abspath(__file__) : pythonファイルが存在する絶対パスを取得
@@ -20,22 +22,30 @@ CFGPATH = os.path.dirname(ROOTPATH)
 class SystemMain:
     def __init__(self):
         pygame.init()
-        with open(os.path.normpath(os.path.join(CFGPATH,'Setting.json')), encoding='utf-8') as jsonfile:
+        with open(os.path.normpath('.\Setting.json'), encoding='utf-8') as jsonfile:
             self.json_data = json.load(jsonfile)
+        with open(os.path.normpath('.\File.json'), encoding='utf-8') as jsonfile2:
+            self.filedir = json.load(jsonfile2)
     def __del__(self):
         return 
-    def initialize(self, width, height, titlename):
+    def initialize(self):
         self.screen = pygame.display.set_mode((self.json_data["windowWidth"], self.json_data["WindowHight"]))  # 画面サイズ設定
         pygame.display.set_caption(self.json_data["TitleName"])                   # ウィンドウタイトル設定
+        NowGameScene = "TitleScene"
+        self.TS = TitleScene.TitleScene(self.json_data, self.filedir)
+        self.GS = GameScene.GameScene()
         return True
     def systemmain(self):
-        self.background = pygame.image.load(os.path.normpath(os.path.join(CFGPATH,'Data','image','menu.png'))) # とりあえずここ、画像クラスを作った方がよいのかもしれない?
+        self.TS.init()
+        self.GS.init()
         self.running = True
         while(self.running):
-            MouseClass.MouseClass.isMousePositionChecker(640,360,800,800)
+            self.TS.update(self.screen)
             for event in pygame.event.get():
                 if event.type == QUIT:                          # 終了ボタンを押した場合終了 セーブ警告とかなし
                     self.running = False
+            
+            self.TS.draw()
             pygame.display.update()                             # 画面更新 必ず必要
         
         pygame.quit()
