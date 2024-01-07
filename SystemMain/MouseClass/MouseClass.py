@@ -7,13 +7,11 @@ class MouseClass:
         if x1 <= pygame.mouse.get_pos()[0] and y1 <= pygame.mouse.get_pos()[1] and pygame.mouse.get_pos()[0] <= x2 and pygame.mouse.get_pos()[1] <= y2:
             return True
         return False
-
     def isClickRightButton():
         isClick = pygame.mouse.get_pressed()
         if isClick[0] :    # 右クリック
             return True
         return False
-        
     def isClickLeftButton():
         isClick = pygame.mouse.get_pressed()
         if isClick[3] :    # 左クリック

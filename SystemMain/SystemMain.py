@@ -22,13 +22,22 @@ CFGPATH = os.path.dirname(ROOTPATH)
 class SystemMain:
     def __init__(self):
         pygame.init()
-        with open(os.path.normpath('.\Setting.json'), encoding='utf-8') as jsonfile:
-            self.json_data = json.load(jsonfile)
-        with open(os.path.normpath('.\File.json'), encoding='utf-8') as jsonfile2:
-            self.filedir = json.load(jsonfile2)
+        
     def __del__(self):
         return 
     def initialize(self):
+        with open('./Setting.json', encoding='utf-8') as jsonfile:
+            self.json_data = json.load(jsonfile)
+        with open('./File.json', encoding='utf-8') as jsonfile2:
+            self.filedir = json.load(jsonfile2)
+        #with open('.\File.dat','r', encoding='utf-8') as f:
+        #    line = f.readline()
+        #    while line:
+        #        words = line[:-1].split(',')
+        #        self.MainPicture.setdefault(words[0], pygame.image.load(words[1]).convert_alpha())
+        #        self.MP_rect.setdefault(words[0],self.MainPicture[words[0]].get_rect())
+        #        line = f.readline()
+
         self.screen = pygame.display.set_mode((self.json_data["windowWidth"], self.json_data["WindowHight"]))  # 画面サイズ設定
         pygame.display.set_caption(self.json_data["TitleName"])                   # ウィンドウタイトル設定
         NowGameScene = "TitleScene"
@@ -36,16 +45,20 @@ class SystemMain:
         self.GS = GameScene.GameScene()
         return True
     def systemmain(self):
-        self.TS.init()
-        self.GS.init()
+        self.TS.initialize()
+        self.GS.initialize()
         self.running = True
         while(self.running):
             self.TS.update(self.screen)
+            self.TS.draw()
+
+            #self.GS.update()
+            #self.GS.draw(self.screen)
             for event in pygame.event.get():
                 if event.type == QUIT:                          # 終了ボタンを押した場合終了 セーブ警告とかなし
                     self.running = False
             
-            self.TS.draw()
+
             pygame.display.update()                             # 画面更新 必ず必要
         
         pygame.quit()

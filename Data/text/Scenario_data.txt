@@ -1,10 +1,10 @@
-	@@drawgraph 0 0 1280 720 rouka
+	@@drawgraph 0 0 rouka
 	@@transition 1000
 
-@@label	Scene1
+@@label Scene1
 	@@SceneTitle コンサートに向けて
 
-	@@MessageWindow 1 textwindow
+	@@TextWindow 1 textwindow
 
 	@@Message 『卒業式コンサート』
 

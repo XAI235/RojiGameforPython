@@ -17,11 +17,10 @@ class TitleScene :
          self.jd = json_data
          self.fd = file_dir
 
-    def init(self):
+    def initialize(self):
         self.time = []
         self.Button_Data = []
         self.rects_Button = []
-        #print(self.jd["Title"])
         self.BackGround = pygame.image.load(self.fd["Title"]).convert_alpha() # TitelScene専用の画像配列
         self.Button_Data.append(pygame.image.load(self.fd["Start"]).convert_alpha()) # TitelScene専用の画像配列
         self.Button_Data.append(pygame.image.load(self.fd["load"]).convert_alpha()) # TitelScene専用の画像配列
@@ -31,7 +30,7 @@ class TitleScene :
         for i in range(len(self.Button_Data)):
              self.rects_Button.append(self.Button_Data[i].get_rect())
              self.time.append(0)
-        pygame.mixer.music.load(os.path.normpath(os.path.join(CFGPATH,'Data','sound','title.wav'))) # BGM読み込み
+        pygame.mixer.music.load('./Data/sound/title.wav') # BGM読み込み
         pygame.mixer.music.set_volume(self.jd["SoundVolume"])
     def draw(self):
         if(not pygame.mixer.music.get_busy()) :             #これでBGMがなっているかの判定
@@ -50,19 +49,19 @@ class TitleScene :
         if(MouseClass.MouseClass.isMousePositionChecker(34,382,355,415)):
              if MouseClass.MouseClass.isClickRightButton() : 
                   print("Selected Start Button")
-             self.time[0] = (self.time[0] + 1) % 360
+             self.time[0] = (self.time[0] + 1) % (360 * 5)
         elif(MouseClass.MouseClass.isMousePositionChecker(34,442,355,475)):
              if MouseClass.MouseClass.isClickRightButton() : 
                   print("Selected load Button")
-             self.time[1] = (self.time[1] + 1) % 360
+             self.time[1] = (self.time[1] + 1) % (360 * 5)
         elif(MouseClass.MouseClass.isMousePositionChecker(34,502,355,535)):
              if MouseClass.MouseClass.isClickRightButton() : 
                   print("Selected Config Button")
-             self.time[2] = (self.time[2] + 1) % 360
+             self.time[2] = (self.time[2] + 1) % (360 * 5)
         elif(MouseClass.MouseClass.isMousePositionChecker(34,562,355,595)):
              if MouseClass.MouseClass.isClickRightButton() : 
                   print("Selected end Button")
-             self.time[3] = (self.time[3] + 1) % 360
+             self.time[3] = (self.time[3] + 1) % (360 * 5)
         else:
             for i in range(len(self.time)):
              self.time[i] = 0
