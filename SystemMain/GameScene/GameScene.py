@@ -4,15 +4,15 @@ from ..MouseClass import MouseClass
 
 class GameScene:
     def __init__(self) :
-        self.MainPicture = {}
-        self.MP_rect = {}
-        self.MainPictureBuffer = []
-        self.MP_rectBuffer=[]
-        self.MP_Coordinate = []
-        self.td = []
-        self.isMSWindow = False
-        self.Now_read_line = []
-        self.current_line = 0
+        self.MainPicture :dict = {}  # メイン画像
+        self.MP_rect :dict = {}      # メイン画像サイズ
+        self.MainPictureBuffer :list = [] # メイン画像　バッファ
+        self.MP_rectBuffer :list =[] # メイン画像のサイズ
+        self.MP_Coordinate :list = [] # メイン画像の座標
+        self.td : list = [] # テキストデータ群
+        self.isMSWindow : bool = False # メッセージウィンドウの表示非表示
+        self.Now_read_line : str = '' # 現在読み込んだテキストデータのラインデータ
+        self.current_line : int = 0 # 読み込んだテキストデータの行数
         return
     
     def __del__(self):
@@ -27,15 +27,23 @@ class GameScene:
                 self.MainPicture[words[0]] = pygame.image.load(words[1]).convert_alpha()
                 self.MP_rect[words[0]] = self.MainPicture[words[0]].get_rect()
                 line = f.readline()
-        self.td = open('./Data/text/Scenario_data.txt', encoding='utf-8')
+        
+        with open('./Data/text/Scenario_data.txt', encoding='utf-8') as f:
+            line = f.readline()
+            while line :
+                self.td.append(line)
+                line = f.readline()
         
         # 初期化段階で シナリオ部分まで読み込ませる。
-        self.Now_read_line = self.td.readline()
+        self.Now_read_line = self.td[self.current_line]
+        print(type(self.Now_read_line))
         self.Now_read_line = self.Now_read_line.lstrip()
+        self.current_line += 1
         while self.Now_read_line not in '@@Message' :
             self.lexicalAnalysis(self.Now_read_line)
-            self.Now_read_line = self.td.readline()
+            self.Now_read_line = self.td[self.current_line]
             self.Now_read_line = self.Now_read_line.lstrip()
+            self.current_line += 1
         return 0
     
     def update(self) :
@@ -45,7 +53,7 @@ class GameScene:
             self.Now_read_line = self.Now_read_line.lstrip()
         return 0
     
-    def draw(self, Screen) :
+    def draw(self, Screen :pygame.surface.Surface) :
         # 描画順番
         # 背景 → キャラ → テキストウィンドウ → セリフ
         for i in range(len(self.MainPictureBuffer)) :
