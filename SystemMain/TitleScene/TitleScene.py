@@ -1,44 +1,39 @@
-import os,sys, random
-import tkinter as tki
-import tkinter.messagebox as messagebox
+import os
 import math
-import json
 import pygame
 from pygame.locals import *
-from ..MouseClass import MouseClass
-import cv2
+from SystemMain.MouseClass import MouseClass
 
 ROOTPATH = os.path.dirname(os.path.abspath(__file__))
 FFGPATH = os.path.dirname(ROOTPATH)
 CFGPATH = os.path.dirname(os.path.dirname(ROOTPATH))
 
 class TitleScene :
-    def __init__(self, json_data : dict , file_dir : dict):
-         self.jd : dict = json_data
-         self.fd : dict = file_dir
+    def __init__(self, game_config : dict , file_dir : dict):
+         self.game_config : dict = game_config
+         self.file_dir : dict = file_dir
 
     def initialize(self):
         self.time :list = []
         self.Button_Data : list = []
         self.rects_Button : list = []
-        self.BackGround :pygame.surface.Surface = pygame.image.load(self.fd["Title"]).convert_alpha() # TitelScene専用の画像配列
-        self.Button_Data.append(pygame.image.load(self.fd["Start"]).convert_alpha()) # TitelScene専用の画像配列
-        self.Button_Data.append(pygame.image.load(self.fd["load"]).convert_alpha()) # TitelScene専用の画像配列
-        self.Button_Data.append(pygame.image.load(self.fd["config"]).convert_alpha()) # TitelScene専用の画像配列
-        self.Button_Data.append(pygame.image.load(self.fd["end"]).convert_alpha()) # TitelScene専用の画像配列
+        self.BackGround :pygame.surface.Surface = pygame.image.load(self.file_dir["Title"]).convert_alpha() # TitelScene専用の画像配列
+        self.Button_Data.append(pygame.image.load(self.file_dir["Start"]).convert_alpha()) # TitelScene専用の画像配列
+        self.Button_Data.append(pygame.image.load(self.file_dir["load"]).convert_alpha()) # TitelScene専用の画像配列
+        self.Button_Data.append(pygame.image.load(self.file_dir["config"]).convert_alpha()) # TitelScene専用の画像配列
+        self.Button_Data.append(pygame.image.load(self.file_dir["end"]).convert_alpha()) # TitelScene専用の画像配列
         self.rect_BackGround : pygame.rect.Rect = self.BackGround.get_rect()
         for i in range(len(self.Button_Data)):
              self.rects_Button.append(self.Button_Data[i].get_rect())
              self.time.append(0)
         pygame.mixer.music.load('./Data/sound/title.wav') # BGM読み込み
-        pygame.mixer.music.set_volume(self.jd["SoundVolume"])
+        pygame.mixer.music.set_volume(self.game_config["SoundVolume"])
+
     def draw(self):
         if(not pygame.mixer.music.get_busy()) :             #これでBGMがなっているかの判定
                 pygame.mixer.music.play(-1)
 
-        
-
-    def update(self, Screen : pygame.surface.Surface):
+    def update(self, Screen : pygame.surface.Surface, current_game_scene : dict):
         Screen.fill((255,255,255,))                          # 背景色(ここをうまくやればフェードイン、フェードアウト作れる?)
         Screen.blit(self.BackGround,self.rect_BackGround)
 

@@ -1,6 +1,6 @@
 import os,sys, random
 import pygame
-from ..MouseClass import MouseClass
+from SystemMain.MouseClass import MouseClass
 
 class GameScene:
     def __init__(self) :
