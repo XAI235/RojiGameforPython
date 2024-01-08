@@ -16,13 +16,13 @@
 
 	@@Message　その隣には――
 
-	@@NamePlate namewindow_kanade 1 LEFT
+	@@NamePlate namewindow_miyuki 1 LEFT
 	@@BGMPlay miyuki 1
 	@@VoicePlay miyuki 1
 
 	@@Message 「詩音くん、いつもポスターの前でため息吐いてるね」
 	
-	@@NamePlate namewindow_kanade 0
+	@@NamePlate namewindow_miyuki 0
 
 	@@Message　栗色の長い髪の毛を揺らし、彼女が僕の顔を覗き込んだ。
 

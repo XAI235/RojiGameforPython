@@ -49,19 +49,19 @@ class TitleScene :
         if(MouseClass.MouseClass.isMousePositionChecker(34,382,355,415)):
              if MouseClass.MouseClass.isClickRightButton() : 
                   print("Selected Start Button")
-             self.time[0] = (self.time[0] + 1) % (360 * 5)
+             self.time[0] = (self.time[0] + 1) % (360 * 15)
         elif(MouseClass.MouseClass.isMousePositionChecker(34,442,355,475)):
              if MouseClass.MouseClass.isClickRightButton() : 
                   print("Selected load Button")
-             self.time[1] = (self.time[1] + 1) % (360 * 5)
+             self.time[1] = (self.time[1] + 1) % (360 * 15)
         elif(MouseClass.MouseClass.isMousePositionChecker(34,502,355,535)):
              if MouseClass.MouseClass.isClickRightButton() : 
                   print("Selected Config Button")
-             self.time[2] = (self.time[2] + 1) % (360 * 5)
+             self.time[2] = (self.time[2] + 1) % (360 * 15)
         elif(MouseClass.MouseClass.isMousePositionChecker(34,562,355,595)):
              if MouseClass.MouseClass.isClickRightButton() : 
                   print("Selected end Button")
-             self.time[3] = (self.time[3] + 1) % (360 * 5)
+             self.time[3] = (self.time[3] + 1) % (360 * 15)
         else:
             for i in range(len(self.time)):
              self.time[i] = 0
