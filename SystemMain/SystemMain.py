@@ -53,14 +53,17 @@ class SystemMain:
             self.TS.update(self.screen, self.current_game_scene)
             self.TS.draw()
 
-            #self.GS.update()
-            #self.GS.draw(self.screen)
             for event in pygame.event.get():
-                if event.type == QUIT:                          # 終了ボタンを押した場合終了 セーブ警告とかなし
+                if event.type == pygame.MOUSEBUTTONUP:
+                    self.current_game_scene = self.TS.mouse_event(pygame.mouse.get_pos)
+                elif event.type == QUIT:                          # 終了ボタンを押した場合終了 セーブ警告とかなし
+                    self.running = False
+
+                if self.current_game_scene == CurrentGameScene.CurrentGameScene.QUIT:
                     self.running = False
 
             pygame.display.update()                             # 画面更新 必ず必要
-        
+
         pygame.quit()
 
     def finalize(self):
