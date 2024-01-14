@@ -68,7 +68,7 @@ class GameScene:
             self.MP_Coordinate.append((int(words[1]),int(words[2])))
         elif words[0] == '@@TextWindow' :
             if words[1] == '1' :
-                if self.isMSWindow & 0b10 > 0 : # ネームプレートがあるときは
+                if self.isMSWindow & 0b10 > 0 : # ネームプレートがあるときは格納位置はネームプレートの前
                     self.MainPictureBuffer.insert(-2, self.MainPicture[words[-1]])
                     self.MP_rectBuffer.insert(-2, self.MP_rect[words[-1]])
                     if words[-1] == 'LEFT' :

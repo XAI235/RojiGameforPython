@@ -4,6 +4,7 @@ import pygame
 from pygame.locals import *
 from SystemMain.TitleScene import TitleScene
 from SystemMain.GameScene import GameScene, CurrentGameScene
+from tkinter import messagebox
 
 #os.path.abspath(__file__) : pythonファイルが存在する絶対パスを取得
 #os.path.dirname(): 入力したパスの一つ上の階層のパスを取得
@@ -48,19 +49,32 @@ class SystemMain:
         self.GS.initialize()
         self.running = True
         self.current_game_scene = CurrentGameScene.CurrentGameScene.TITLE_SCENE
+        self.next_game_scene = None
         while(self.running):
             pygame.time.Clock().tick(30)
-            self.TS.update(self.screen, self.current_game_scene)
-            self.TS.draw()
+
+            if(self.current_game_scene ==CurrentGameScene.CurrentGameScene.TITLE_SCENE): # タイトルシーンの処理
+                self.TS.update(self.screen, self.current_game_scene)
+                self.TS.draw()
 
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONUP:
-                    self.current_game_scene = self.TS.mouse_event(pygame.mouse.get_pos)
-                elif event.type == QUIT:                          # 終了ボタンを押した場合終了 セーブ警告とかなし
-                    self.running = False
+                    self.next_game_scene = self.TS.mouse_event(pygame.mouse.get_pos)
+                elif event.type == QUIT:                          # 終了ボタンを押した場合終了 セーブ警告あり
+                    if messagebox.askyesno("確認", "セーブしていない場合はデータは保存されません。終了いたしますか。") == True :
+                        self.running = False
 
-                if self.current_game_scene == CurrentGameScene.CurrentGameScene.QUIT:
-                    self.running = False
+                if self.next_game_scene == CurrentGameScene.CurrentGameScene.INTRO :
+                    print('工事中')
+                elif self.next_game_scene == CurrentGameScene.CurrentGameScene.LOAD :
+                    print("工事中")
+                elif self.next_game_scene == CurrentGameScene.CurrentGameScene.SETTING : 
+                    print("工事中")
+                elif self.next_game_scene == CurrentGameScene.CurrentGameScene.QUIT:
+                        if messagebox.askyesno("確認", "セーブしていない場合はデータは保存されません。終了いたしますか。") == True :
+                            self.running = False
+                        else :
+                            self.next_game_scene = None
 
             pygame.display.update()                             # 画面更新 必ず必要
 
