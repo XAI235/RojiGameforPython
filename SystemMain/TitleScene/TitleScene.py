@@ -18,11 +18,11 @@ class TitleScene :
         self.time :list = []
         self.Button_Data : list = []
         self.rects_Button : list = []
-        self.BackGround :pygame.surface.Surface = pygame.image.load(self.file_dir["Title"]).convert_alpha() # TitelScene専用の画像配列
-        self.Button_Data.append(pygame.image.load(self.file_dir["Start"]).convert_alpha()) # TitelScene専用の画像配列
-        self.Button_Data.append(pygame.image.load(self.file_dir["load"]).convert_alpha()) # TitelScene専用の画像配列
-        self.Button_Data.append(pygame.image.load(self.file_dir["config"]).convert_alpha()) # TitelScene専用の画像配列
-        self.Button_Data.append(pygame.image.load(self.file_dir["end"]).convert_alpha()) # TitelScene専用の画像配列
+        self.BackGround :pygame.surface.Surface = pygame.image.load(self.file_dir["Title_Scene"]["Title"]).convert_alpha() # TitelScene専用の画像配列
+        self.Button_Data.append(pygame.image.load(self.file_dir["Title_Scene"]["Start"]).convert_alpha()) # TitelScene専用の画像配列
+        self.Button_Data.append(pygame.image.load(self.file_dir["Title_Scene"]["load"]).convert_alpha()) # TitelScene専用の画像配列
+        self.Button_Data.append(pygame.image.load(self.file_dir["Title_Scene"]["config"]).convert_alpha()) # TitelScene専用の画像配列
+        self.Button_Data.append(pygame.image.load(self.file_dir["Title_Scene"]["end"]).convert_alpha()) # TitelScene専用の画像配列
         self.rect_BackGround : pygame.rect.Rect = self.BackGround.get_rect()
         for i in range(len(self.Button_Data)):
             self.rects_Button.append(self.Button_Data[i].get_rect())

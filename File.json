@@ -1,8 +1,16 @@
 {
-    "TitleName" : ".\\Data\\image\\素材ラフ- (2).png",
-    "Title" : ".\\Data\\image\\Title.png",
-    "Start" : ".\\Data\\image\\素材ラフ- (3).png",
-    "load" : ".\\Data\\image\\素材ラフ- (4).png",
-    "config" : ".\\Data\\image\\素材ラフ- (5).png",
-    "end" : ".\\Data\\image\\素材ラフ- (1).png"
+    "Title_Scene" : {
+        "TitleName" : "./Data/image/素材ラフ- (2).png",
+        "Title" : "./Data/image/Title.png",
+        "Start" : "./Data/image/素材ラフ- (3).png",
+        "load" : "./Data/image/素材ラフ- (4).png",
+        "config" : "./Data/image/素材ラフ- (5).png",
+        "end" : "./Data/image/素材ラフ- (1).png"
+    },
+    "Chapter1" : {
+        "rouka" : "./Data/image/rouka.png",
+        "textwindow" :"./Data/image/Test_message_box.png",
+        "miyuki_Nomal" : "./Data/image/miyuki111.png",
+        "NamePlate_miyuki" : "./Data/image/namewindow_kanade.png"
+    }
 }
