@@ -27,7 +27,7 @@ class TitleScene :
         for i in range(len(self.Button_Data)):
             self.rects_Button.append(self.Button_Data[i].get_rect())
             self.time.append(0)
-        pygame.mixer.music.load('./Data/sound/title.wav') # BGM読み込み
+        pygame.mixer.music.load(self.file_dir["Title_Scene"]["BGM"]) # BGM読み込み
         pygame.mixer.music.set_volume(self.game_config["SoundVolume"])
 
     def draw(self):
@@ -36,7 +36,7 @@ class TitleScene :
 
     def update(self, Screen : pygame.surface.Surface, current_game_scene : dict):
         Screen.fill((255,255,255,))                          # 背景色(ここをうまくやればフェードイン、フェードアウト作れる?)
-        Screen.blit(self.BackGround,self.rect_BackGround)
+        Screen.blit(self.BackGround,(0,0),self.rect_BackGround)
 
         for i in range(len(self.Button_Data)):
             Screen.blit(self.Button_Data[i], (34 ,382+10*math.sin(math.radians(self.time[i]))+60*i), area=self.rects_Button[i])

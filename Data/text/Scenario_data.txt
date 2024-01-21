@@ -1,4 +1,4 @@
-	@@drawgraph 0 0 rouka
+	@@drawgraph 1 1 rouka
 	@@transition 1000
 
 @@label Scene1

@@ -5,8 +5,13 @@
         "Start" : "./Data/image/素材ラフ- (3).png",
         "load" : "./Data/image/素材ラフ- (4).png",
         "config" : "./Data/image/素材ラフ- (5).png",
-        "end" : "./Data/image/素材ラフ- (1).png"
+        "end" : "./Data/image/素材ラフ- (1).png",
+        "BGM" : "./Data/sound/title.wav"
     },
+    "Load" : {
+        "Load_Picture" : "./Data/image/ロードデータ画面.png"
+    },
+
     "Chapter1" : {
         "rouka" : "./Data/image/rouka.png",
         "textwindow" :"./Data/image/Test_message_box.png",

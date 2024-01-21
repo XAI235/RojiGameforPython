@@ -56,20 +56,27 @@ class SystemMain:
             if(self.current_game_scene ==CurrentGameScene.CurrentGameScene.TITLE_SCENE): # タイトルシーンの処理
                 self.TS.update(self.screen, self.current_game_scene)
                 self.TS.draw()
+            elif(self.current_game_scene ==CurrentGameScene.CurrentGameScene.INTRO): # タイトルシーンの処理
+                self.GS.update()
+                self.GS.draw(self.screen)
 
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONUP:
-                    self.next_game_scene = self.TS.mouse_event(pygame.mouse.get_pos)
+                    if event.button == 1 : 
+                        self.next_game_scene = self.TS.mouse_event(pygame.mouse.get_pos)
                 elif event.type == QUIT:                          # 終了ボタンを押した場合終了 セーブ警告あり
                     if messagebox.askyesno("確認", "セーブしていない場合はデータは保存されません。終了いたしますか。") == True :
                         self.running = False
 
                 if self.next_game_scene == CurrentGameScene.CurrentGameScene.INTRO :
-                    print('工事中')
+                    self.current_game_scene = self.next_game_scene
+                    self.next_game_scene = None
                 elif self.next_game_scene == CurrentGameScene.CurrentGameScene.LOAD :
-                    print("工事中")
+                    messagebox.showinfo("工事中", "工事中")
+                    self.next_game_scene = None
                 elif self.next_game_scene == CurrentGameScene.CurrentGameScene.SETTING : 
-                    print("工事中")
+                    messagebox.showinfo("工事中", "工事中")
+                    self.next_game_scene = None
                 elif self.next_game_scene == CurrentGameScene.CurrentGameScene.QUIT:
                         if messagebox.askyesno("確認", "セーブしていない場合はデータは保存されません。終了いたしますか。") == True :
                             self.running = False

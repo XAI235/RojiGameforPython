@@ -9,11 +9,7 @@ class GameScene:
         self.MainPictureBuffer :list = [] # メイン画像　バッファ
         self.MP_rectBuffer :list =[] # メイン画像のサイズ
         self.MP_Coordinate :list = [] # メイン画像の座標
-        self.td : list = [] # テキストデータ群
-        # 1ビット目 : メッセージウィンドウ
-        # 2ビット目 : ネームプレートウィンドウ
-        #self.isMSWindow : int = 0b00 #いらないかも、配列で同じ要素のものを消せる可能性
-        # 読み込ますときは、必ずテキストウィンドウを先に読み込ます。
+        self.td : list = [] # テキストデータ群。
         self.Now_read_line : str = '' # 現在読み込んだテキストデータのラインデータ
         self.current_line : int = 0 # 読み込んだテキストデータの行数
         return
@@ -37,28 +33,27 @@ class GameScene:
                 line = f.readline()
         
         # 初期化段階で シナリオ部分まで読み込ませる。
-        self.Now_read_line = self.td[self.current_line]
-        self.Now_read_line = self.Now_read_line.lstrip()
-        self.current_line += 1
-        while self.Now_read_line not in '@@Message' :
-            self.lexicalAnalysis(self.Now_read_line)
-            self.Now_read_line = self.td[self.current_line]
-            self.Now_read_line = self.Now_read_line.lstrip()
-            self.current_line += 1
+        while self.td[self.current_line] :
+            if  "@@Message" in self.td[self.current_line] :
+                break
+            else :
+                self.lexicalAnalysis(self.td[self.current_line].lstrip())
+                self.current_line += 1
+                
         return 0
     
     def update(self) :
-        if MouseClass.MouseClass.isClickRightButton() :
-            self.lexicalAnalysis(self.Now_read_line)
-            self.Now_read_line = self.td.readline()
-            self.Now_read_line = self.Now_read_line.lstrip()
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONUP:
+                    if event.button == 1 : 
+                        return 0
         return 0
     
     def draw(self, Screen :pygame.surface.Surface) :
         # 描画順番
         # 背景 → キャラ → テキストウィンドウ → ネームプレート → セリフ
         for i in range(len(self.MainPictureBuffer)) :
-                Screen.blit(self.MainPictureBuffer[i], self.MP_Coordinate[i], area=self.MP_rectBuffer[i])
+                Screen.blit(self.MainPictureBuffer[i], dest=self.MP_Coordinate[i], area=self.MP_rectBuffer[i])
         return 0
 
     def lexicalAnalysis(self, line : str) :
@@ -69,20 +64,21 @@ class GameScene:
             self.MP_Coordinate.append((int(words[1]),int(words[2])))
         elif words[0] == '@@TextWindow' : # テキストウィンドウは必ず、ネームプレートを読み込ます前に読み込ませる。
             if words[1] == '1' :
-                self.MainPictureBuffer.insert(-1, self.MainPicture[words[-1]])
-                self.MP_rectBuffer.insert(-1, self.MP_rect[words[-1]])
+                self.MainPictureBuffer.append(self.MainPicture[words[-1]])
+                self.MP_rectBuffer.append(self.MP_rect[words[-1]])
+                self.MP_Coordinate.append((40,500))
             elif words[1] == '0' :
                 self.MainPictureBuffer.remove(self.MainPicture[words[-1]])
                 self.MP_rectBuffer.remove(self.MP_rect[words[-1]])
-                #self.MP_Coordinate.remove((0,300))
+                self.MP_Coordinate.remove((40,500))
         elif words[0] == '@@NamePlate' :
             if words[1] == 'namewindow_kanade' :
                 if words[2] == '1' :
-                    self.MainPictureBuffer.insert(-1,self.MainPicture[words[-1]])
-                    self.MP_rectBuffer.insert(-1,self.MP_rect[words[-1]])
+                    self.MainPictureBuffer.append(self.MainPicture[words[-1]])
+                    self.MP_rectBuffer.append(self.MP_rect[words[-1]])
                     if words[3] == "LEFT" :
                         # ここに何らかの座標を入れる
-                        self.MP_Coordinate.remove((0,300))
+                        self.MP_Coordinate.append((0,300))
                 elif words[2] == '0' :
                     self.MainPictureBuffer.remove(self.MainPicture[words[-1]])
                     self.MP_rectBuffer.remove(self.MP_rect[words[-1]])
