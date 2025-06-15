@@ -1,14 +1,10 @@
 from SystemMain import SystemMain
 
 def main():
-        systemmain = SystemMain()
-
-        if(systemmain.initialize()) :
-                systemmain.systemMain()
-
-        systemmain.finalize()
-        return 0
-
+    SysM = SystemMain.SystemMain()
+    if(SysM.initialize()) :
+        SysM.main_loop()
+    return 0
 
 if __name__ == "__main__":
-        main()
+    main()

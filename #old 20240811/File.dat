@@ -1,0 +1,27 @@
+TitleName,./Data/image/素材ラフ- (2).png
+Title,./Data/image/Title.png
+Start,./Data/image/素材ラフ- (3).png
+load,./Data/image/素材ラフ- (4).png
+config,./Data/image/素材ラフ- (5).png
+end,./Data/image/素材ラフ- (1).png
+rouka,./Data/image/rouka.png
+textwindow,./Data/image/Test_message_box.png
+miyuki_Nomal,./Data/image/miyuki111.png
+kanade_Nomal,./Data/image/kanade111.png
+miho_Nomal,./Data/image/miho1.png
+name_kanade,./Data/image/namewindow_kanade.png
+name_miyuki,./Data/image/namewindow_miyuki.png
+mio_01,./Data/image/mio/1.png
+mio_02,./Data/image/mio/2.png
+mio_03,./Data/image/mio/3.png
+mio_04,./Data/image/mio/4.png
+mio_05,./Data/image/mio/5.png
+sizuku_01,./Data/image/sizuku/1.png
+sizuku_02,./Data/image/sizuku/2.png
+sizuku_04,./Data/image/sizuku/4.png
+sizuku_05,./Data/image/sizuku/5.png
+tamaki_01,./Data/image/tamaki/1.png
+tamaki_02,./Data/image/tamaki/2.png
+tamaki_03,./Data/image/tamaki/3.png
+tamaki_04,./Data/image/tamaki/4.png
+tamaki_05,./Data/image/tamaki/5.png
