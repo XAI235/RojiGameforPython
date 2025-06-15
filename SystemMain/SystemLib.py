@@ -1375,7 +1375,7 @@ def MessageForefrontShowwarning(Title : str, Message :str):
     root.destroy()
     pygame.display.init()
 
-def file_decryped(file : str, key : str = "AdDM0FwpT5LhQmhzMDaa78Z0VlzdOT6SFJTS_gnbS48="):
+def file_decryped(file : str, key : str = "Dummy"):
     
     fernet = Fernet(key)
 
@@ -1387,7 +1387,7 @@ def file_decryped(file : str, key : str = "AdDM0FwpT5LhQmhzMDaa78Z0VlzdOT6SFJTS_
 
     return decrypted
 
-def file_encryped(file : str, key : str = "AdDM0FwpT5LhQmhzMDaa78Z0VlzdOT6SFJTS_gnbS48="):
+def file_encryped(file : str, key : str = "Dummy"):
     
     fernet = Fernet(key)
 
